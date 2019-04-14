@@ -13,4 +13,8 @@ class CipherTest < Minitest::Test
     assert_instance_of Cipher, cipher
   end
 
+  def test_it_has_the_alphabet_plus_a_space
+    assert_equal ("a".."z").to_a << " ", cipher.letters
+  end
+
 end
