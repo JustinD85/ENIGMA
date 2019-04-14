@@ -17,4 +17,14 @@ class CipherTest < Minitest::Test
     assert_equal ("a".."z").to_a << " ", cipher.letters
   end
 
+  def test_it_can_rotate_letters_using_an_offset
+    assert_equal "a", cipher.letters.first
+
+    cipher.rotate_by(3)
+    assert_equal "d", cipher.letters.first
+
+    cipher.rotate_by(-3)
+    assert_equal "a", cipher.letters.first
+  end
+
 end
