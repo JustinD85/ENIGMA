@@ -21,4 +21,5 @@ class Cipher
     rotate_by(offset)
     letter_at_point
   end
+
 end
