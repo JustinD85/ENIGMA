@@ -5,10 +5,34 @@ class Shifter < Cipher
 
   def initialize(keyset)
     @keyset = keyset
+    super()
   end
 
-  def self.new_shifter
-    keys = generate_keys_from_rand
+
+  def encode(letter)
+    return letter unless @letters.include? letter
+    translate(letter, next_key!)
+  end
+
+  def decode(letter)
+    translate(letter, inverse_next_key!)
+  end
+
+  private
+
+  def next_key!
+    key =  @keyset.first
+    @keyset.rotate!
+    key
+  end
+
+  def inverse_next_key!
+    key =  @keyset.first * -1
+    @keyset.rotate!
+    key
+  end
+
+  def self.new_shifter(keys = generate_keys_from_rand)
     offsets = generate_offsets
     keyset= [keys, offsets].transpose.map { |arr| arr.reduce(:+) }
     Shifter.new(keyset)
@@ -25,4 +49,6 @@ class Shifter < Cipher
     large_number = Time.now.strftime("%d%m%y").to_i ** 2
     large_number.digits.slice(-4, 4)
   end
+
+
 end

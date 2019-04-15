@@ -27,15 +27,15 @@ class CipherTest < Minitest::Test
 
   def test_it_can_rotate_letters_using_an_offset
     assert_equal "a", cipher.send(:letter_at_point)
-    cipher.send(:rotate_by, shifter.next)
+    cipher.send(:rotate_by, shifter.next_key!)
     assert_equal "d", cipher.send(:letter_at_point)
 
-    cipher.send(:rotate_by, shifter.inverse_next)
+    cipher.send(:rotate_by, shifter.inverse_next_key!)
     assert_equal "a", cipher.send(:letter_at_point)
   end
 
   def test_it_can_encode_a_letter_with_offset
-    assert_equal "f", cipher.translate("c", shifter.next)
+    assert_equal "f", cipher.translate("c", shifter.next_key!)
   end
 
 end
