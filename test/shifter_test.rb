@@ -6,7 +6,7 @@ class ShifterTest < Minitest::Test
   attr_reader :shifter
 
   def setup
-    @shifter = Shifter.new_shifter
+    @shifter = Shifter.new_shifter(2715, 40895)
   end
 
   def test_it_exists
@@ -19,12 +19,13 @@ class ShifterTest < Minitest::Test
   end
 
   def test_it_can_generate_a_zero_padded_number_under_1000
-    keys = Shifter.generate_keys(02715)
+    keys = Shifter.generate_keys(2715)
     assert keys.all? { |key| key < 100 and key >= 0 }
   end
 
   def test_it_can_generate_offsets
-    assert Shifter.generate_offsets.all? { |key| key < 10 and key >= 0 }
+    date_as_num = Shifter.format_today
+    assert Shifter.generate_offsets(date_as_num).all? { |key| key < 10 and key >= 0 }
   end
 
   def test_it_can_generate_its_own_keyset
@@ -45,12 +46,19 @@ class ShifterTest < Minitest::Test
   end
 
   def test_it_can_encode_a_letter_with_offset
-    shifter = Shifter.new_shifter(02715)
-    assert_equal "g", shifter.encode("a")
-    assert_equal "m", shifter.encode("b")
-    assert_equal "o", shifter.encode("c")
-    assert_equal "s", shifter.encode("d")
+    shifter = Shifter.new_shifter(2715, 40895)
+    assert_equal "k", shifter.encode("h")
+    assert_equal "e", shifter.encode("e")
+    assert_equal "d", shifter.encode("l")
+    assert_equal "x", shifter.encode("d")
   end
 
+  # def test_it_can_decode_a_letter_with_offset
+  #   shifter = Shifter.new_shifter(02715)
+  #   assert_equal "g", shifter.decode("a")
+  #   assert_equal "m", shifter.decode("b")
+  #   assert_equal "o", shifter.decode("c")
+  #   assert_equal "s", shifter.decode("d")
+  # end
 
-end
+end 

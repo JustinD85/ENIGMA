@@ -31,24 +31,27 @@ class Shifter < Cipher
     key
   end
 
-  def self.new_shifter(numbers = rand(100000))
+  def self.new_shifter(numbers = rand(100000), date_as_num = format_today)
     keys = generate_keys(numbers)
-    offsets = generate_offsets
+    offsets = generate_offsets(date_as_num)
     keyset= [keys, offsets].transpose.map { |arr| arr.reduce(:+) }
     Shifter.new(keyset)
   end
 
   def self.generate_keys(numbers)
-    numbers = numbers.digits
+    numbers = numbers.digits.reverse
     numbers.unshift(0) until numbers.length == 5
     numbers = numbers.each_cons(2).to_a
     numbers.map { |arr_nums| arr_nums.join.to_i }
   end
 
-  def self.generate_offsets(numbers = Time.now.strftime("%d%m%y").to_i)
-    large_number =  numbers ** 2
-    large_number.digits.slice(-4, 4)
+  def self.generate_offsets(date_as_num)
+    large_number =  date_as_num ** 2
+    large_number.digits.reverse.slice(-4, 4)
   end
 
+  def self.format_today
+    Time.now.strftime("%d%m%y").to_i
+  end
 
 end
