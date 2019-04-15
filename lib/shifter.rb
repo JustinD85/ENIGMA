@@ -5,6 +5,8 @@ class Shifter < Cipher
 
   def initialize(keyset)
     @keyset = keyset
+    @keys = nil
+    @date = nil
     super()
   end
 
@@ -29,7 +31,8 @@ class Shifter < Cipher
     key
   end
 
-  def self.new_shifter(numbers = rand(100000), date_as_num = format_today)
+  def self.new_shifter(numbers, date_as_num)
+    @keys = numbers ; @date = date_as_num
     keys = generate_keys(numbers)
     offsets = generate_offsets(date_as_num)
     keyset= [keys, offsets].transpose.map { |arr| arr.reduce(:+) }
@@ -46,10 +49,6 @@ class Shifter < Cipher
   def self.generate_offsets(date_as_num)
     large_number =  date_as_num ** 2
     large_number.digits.reverse.slice(-4, 4)
-  end
-
-  def self.format_today
-    Time.now.strftime("%d%m%y").to_i
   end
 
 end
