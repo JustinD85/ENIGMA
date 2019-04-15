@@ -32,7 +32,8 @@ class Shifter < Cipher
   end
 
   def self.new_shifter(numbers, date_as_num)
-    @keys = numbers ; @date = date_as_num
+    @keys = numbers
+    @date = date_as_num
     keys = generate_keys(numbers)
     offsets = generate_offsets(date_as_num)
     keyset= [keys, offsets].transpose.map { |arr| arr.reduce(:+) }
@@ -47,8 +48,7 @@ class Shifter < Cipher
   end
 
   def self.generate_offsets(date_as_num)
-    large_number =  date_as_num ** 2
-    large_number.digits.reverse.slice(-4, 4)
+    (date_as_num ** 2).digits.reverse.last(4)
   end
 
 end
