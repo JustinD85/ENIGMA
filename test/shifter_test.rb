@@ -1,8 +1,10 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require './lib/util'
 require './lib/shifter'
 
 class ShifterTest < Minitest::Test
+  include Util
   attr_reader :shifter
 
   def setup
@@ -24,25 +26,24 @@ class ShifterTest < Minitest::Test
   end
 
   def test_it_can_generate_offsets
-    date_as_num = Shifter.format_today
+    date_as_num = format_today
     assert Shifter.generate_offsets(date_as_num).all? { |key| key < 10 and key >= 0 }
   end
 
   def test_it_can_generate_its_own_keyset
-    assert Shifter.new_shifter.keyset.all? { |num| Integer === num }
-    assert Shifter.new_shifter.keyset.all? { |num| num >= 0 }
-    assert Shifter.new_shifter.keyset.length == 4
+    assert shifter.keyset.all? { |num| Integer === num }
+    assert shifter.keyset.all? { |num| num >= 0 }
+    assert shifter.keyset.length == 4
   end
 
   def test_it_can_rotate_keys_in_keyset
-    shifter = Shifter.new_shifter
     assert shifter.send(:next_key!) != shifter.send(:next_key!)
   end
 
   def test_it_can_return_key_in_keyset
-    assert_instance_of Integer, Shifter.new_shifter.send(:next_key!)
-    assert_instance_of Integer, Shifter.new_shifter.send(:inverse_next_key!)
-    assert Shifter.new_shifter.send(:inverse_next_key!) <= 0
+    assert_instance_of Integer, shifter.send(:next_key!)
+    assert_instance_of Integer, shifter.send(:inverse_next_key!)
+    assert shifter.send(:inverse_next_key!) <= 0
   end
 
   def test_it_can_encode_a_letter_with_offset
