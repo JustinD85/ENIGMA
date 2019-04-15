@@ -8,7 +8,6 @@ class Shifter < Cipher
     super()
   end
 
-
   def encode(letter)
     translate(letter, next_key!)
   end
@@ -18,7 +17,6 @@ class Shifter < Cipher
   end
 
   private
-
   def next_key!
     key =  @keyset.first
     @keyset.rotate!

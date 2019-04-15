@@ -53,12 +53,14 @@ class ShifterTest < Minitest::Test
     assert_equal "x", shifter.encode("d")
   end
 
-  # def test_it_can_decode_a_letter_with_offset
-  #   shifter = Shifter.new_shifter(02715)
-  #   assert_equal "g", shifter.decode("a")
-  #   assert_equal "m", shifter.decode("b")
-  #   assert_equal "o", shifter.decode("c")
-  #   assert_equal "s", shifter.decode("d")
-  # end
+  def test_it_can_decode_a_letter_with_offset
+    shifter = Shifter.new_shifter(2715, 40895)
+    assert_equal "h", shifter.decode("k")
+    assert_equal "e", shifter.decode("e")
+    assert_equal "l", shifter.decode("d")
+    assert_equal "d", shifter.decode("x")
+  end
 
-end 
+  
+
+end
