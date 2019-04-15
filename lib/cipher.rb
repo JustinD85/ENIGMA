@@ -5,7 +5,7 @@ class Cipher
   end
 
   def translate(letter, offset)
-    letter.downcase!
+    return letter unless @letters.include? letter
     rotate_by(1) until letter_at_point.eql? letter
     rotate_by(offset)
     letter_at_point
