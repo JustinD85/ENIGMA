@@ -19,7 +19,7 @@ class ShifterTest < Minitest::Test
   end
 
   def test_it_can_generate_a_zero_padded_number_under_1000
-    keys = Shifter.generate_keys_from_rand
+    keys = Shifter.generate_keys(02715)
     assert keys.all? { |key| key < 100 and key >= 0 }
   end
 
@@ -45,11 +45,11 @@ class ShifterTest < Minitest::Test
   end
 
   def test_it_can_encode_a_letter_with_offset
-   shifter = Shifter.new([12,3,71,41])
-    assert_equal "m", shifter.encode("a")
-    assert_equal "e", shifter.encode("b")
-    assert_equal "t", shifter.encode("c")
-    assert_equal "r", shifter.encode("d")
+    shifter = Shifter.new_shifter(02715)
+    assert_equal "g", shifter.encode("a")
+    assert_equal "m", shifter.encode("b")
+    assert_equal "o", shifter.encode("c")
+    assert_equal "s", shifter.encode("d")
   end
 
 
