@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require 'mocha/minitest'
-require './lib/cipher'
+require './test/test_helper'
 
 class CipherTest < Minitest::Test
   attr_reader :cipher, :shifter
