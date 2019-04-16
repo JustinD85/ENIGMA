@@ -17,6 +17,7 @@ class Enigma
   end
 
   def decrypt(message, key, date = format_today)
+    date ||= format_today
     {
       decryption: translate_a_message(message, key, date, true),
       key: key.to_s,
