@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/util'
-require './lib/shifter'
+require './test/test_helper'
 
 class ShifterTest < Minitest::Test
   include Util
