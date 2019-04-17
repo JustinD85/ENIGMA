@@ -17,3 +17,9 @@
 ```ruby
  ruby lib/decrypt.rb encrypted.txt decrypted.txt 6476
 ```
+
+## Self Assessment:
+#### Functionality: 3
+#### OOP: 4
+#### TDD: 4
+#### GIT: 3
