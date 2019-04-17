@@ -26,7 +26,6 @@ class Enigma
   end
 
   private
-
   def translate_a_message(message, key, date, decode = false)
     translate = decode ? :decode : :encode
     shifter = Shifter.new_shifter(key.to_i, date.to_i)
