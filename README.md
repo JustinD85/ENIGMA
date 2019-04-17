@@ -1,10 +1,10 @@
-* ENIGMA
+# ENIGMA
 
-** Developed by Justin Duncan ***
+## Developed by Justin Duncan 
 
-*** Enigma, device used by the German military command to encode strategic messages before and during World War II. Here we imitate the device electronically!
+##### Enigma, device used by the German military command to encode strategic messages before and during World War II. Here we imitate the device electronically!
 
-**** Installation
+###### Installation
 - Clone down the repo
 - For encrypting run:
 ```ruby
