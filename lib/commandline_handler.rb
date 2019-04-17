@@ -17,5 +17,3 @@ class CommandLineHandler
   end
 
 end
-
-
